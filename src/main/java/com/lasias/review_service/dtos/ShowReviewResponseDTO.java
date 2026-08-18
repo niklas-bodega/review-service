@@ -1,9 +1,10 @@
 package com.lasias.review_service.dtos;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-
+@Builder
 @Getter
 public class ShowReviewResponseDTO {
 

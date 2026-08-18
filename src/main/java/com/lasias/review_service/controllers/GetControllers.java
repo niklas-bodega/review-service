@@ -15,8 +15,11 @@ import java.util.List;
 public class GetControllers {
 
     //Get all users reviews ( add AuthenticationPrincipal later )
-    @GetMapping("/my")
+  /* @GetMapping("/my")
+
    public ResponseEntity<List<ShowReviewResponseDTO>> getMyReviews(){
 
     }
+   */
+
 }
