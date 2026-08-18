@@ -1,0 +1,45 @@
+package com.lasias.review_service.Entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "reviews")
+@Data
+@EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
+@AllArgsConstructor
+public class ReviewEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String comment;
+
+    //Rating 1-5
+    @Column(nullable = false)
+    private int rating;
+
+    @Column(nullable = false)
+    private Long bookingId;
+
+    @Column(nullable = false)
+    private Long roomTypeId;
+
+    @Column(nullable = false)
+    private Long userId;
+
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createDate;
+
+}
