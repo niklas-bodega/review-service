@@ -14,7 +14,9 @@ import java.util.List;
 @RequestMapping("/api/review")
 public class GetControllers {
 
-    //Get all users reviews
-   // @GetMapping("/my")
-   // public ResponseEntity<List<ShowReviewResponseDTO>> getMyReviews(@AuthenticationPrincipal )
+    //Get all users reviews ( add AuthenticationPrincipal later )
+    @GetMapping("/my")
+   public ResponseEntity<List<ShowReviewResponseDTO>> getMyReviews(){
+
+    }
 }
