@@ -38,6 +38,9 @@ public class ReviewEntity {
     @Column(nullable = false)
     private Long userId;
 
+    @Column(nullable = false)
+    private String username;
+
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createDate;
