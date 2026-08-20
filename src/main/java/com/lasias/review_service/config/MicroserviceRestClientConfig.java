@@ -8,7 +8,7 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class MicroserviceRestClientConfig {
 
-    @Value("${user.service.url")
+    @Value("${user.service.url}")
     private String userServiceUrl;
 
 @Bean

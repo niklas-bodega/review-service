@@ -53,6 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 ReviewPrincipal principal = ReviewPrincipal.builder()
                         .userId(userId)
+                        .jwt(jwt)
                         .build();
 
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(principal, null, authorities);

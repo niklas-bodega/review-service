@@ -17,11 +17,14 @@ public class ReviewService {
 
     private final Mapper mapper;
     private final ReviewRepository reviewRepository;
+    private final UserServiceClient userServiceClient;
+
     public ShowReviewResponseDTO createNewReviewEntry(CreateReviewRequestDTO reviewToCreate, ReviewPrincipal principal){
 
 
+        String username = userServiceClient.getUsername(principal.getJwt());
 
-        ReviewEntity createdReview = reviewRepository.save(mapper.createReviewRequestDTOtoEntity(reviewToCreate, principal.getUserId() , "test"));
+        ReviewEntity createdReview = reviewRepository.save(mapper.createReviewRequestDTOtoEntity(reviewToCreate, principal.getUserId() , username));
 
         return mapper.entityToShowReviewResponseDTO(createdReview);
 

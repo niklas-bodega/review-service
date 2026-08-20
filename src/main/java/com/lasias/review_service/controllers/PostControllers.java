@@ -4,7 +4,9 @@ package com.lasias.review_service.controllers;
 import com.lasias.review_service.config.ReviewPrincipal;
 import com.lasias.review_service.dtos.CreateReviewRequestDTO;
 import com.lasias.review_service.dtos.ShowReviewResponseDTO;
+import com.lasias.review_service.services.JwtService;
 import com.lasias.review_service.services.ReviewService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,10 +25,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PostControllers {
 
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
+    private final JwtService jwtService;
 
     @PostMapping()
-    public ResponseEntity<ShowReviewResponseDTO> addNewReviewToDatabase(@Valid @RequestBody CreateReviewRequestDTO reviewToAddToDatabase, @AuthenticationPrincipal ReviewPrincipal principal){
+    public ResponseEntity<ShowReviewResponseDTO> addNewReviewToDatabase(
+            @Valid @RequestBody CreateReviewRequestDTO reviewToAddToDatabase,
+            @AuthenticationPrincipal ReviewPrincipal principal,
+            HttpServletRequest request){
+
 
         return ResponseEntity.ok(reviewService.createNewReviewEntry(reviewToAddToDatabase, principal));
 

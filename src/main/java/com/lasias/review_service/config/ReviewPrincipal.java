@@ -7,5 +7,5 @@ import lombok.Getter;
 @Builder
 public class ReviewPrincipal {
         private final long userId;
-        private final String role;
+        private final String jwt;
 }
