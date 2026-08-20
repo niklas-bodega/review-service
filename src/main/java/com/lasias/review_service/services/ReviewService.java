@@ -14,17 +14,16 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ReviewService {
 
-    Mapper mapper = new Mapper();
-
-    private ReviewRepository reviewRepository;
+    private final Mapper mapper;
+    private final ReviewRepository reviewRepository;
     public ShowReviewResponseDTO createNewReviewEntry(CreateReviewRequestDTO reviewToCreate){
 
         //UserID and username is missing add with JWT filter setup.
 
 
-        ReviewEntity createdReview = reviewRepository.save(mapper.CreateReviewRequestDTOtoEntity(reviewToCreate));
+        ReviewEntity createdReview = reviewRepository.save(mapper.createReviewRequestDTOtoEntity(reviewToCreate, 123L , "test"));
 
-        return mapper.EntityToShowReviewResponseDTO(createdReview);
+        return mapper.entityToShowReviewResponseDTO(createdReview);
 
     }
 

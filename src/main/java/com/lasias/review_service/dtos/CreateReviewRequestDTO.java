@@ -1,9 +1,6 @@
 package com.lasias.review_service.dtos;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -22,6 +19,7 @@ public class CreateReviewRequestDTO {
     private final Long bookingId;
     @NotNull
     private final Long roomTypeId;
+
 
     public CreateReviewRequestDTO(String comment, int rating, Long bookingId, Long roomTypeId) {
         this.comment = comment;
