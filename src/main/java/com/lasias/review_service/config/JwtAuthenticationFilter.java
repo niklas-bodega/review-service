@@ -51,7 +51,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 List<GrantedAuthority> authorities = jwtService.extractAuthorities(jwt);
 
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId, null, authorities);
+                ReviewPrincipal principal = ReviewPrincipal.builder()
+                        .userId(userId)
+                        .build();
+
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(principal, null, authorities);
                 SecurityContextHolder.getContext().setAuthentication(authToken);
                 log.info("User with id {} authenticated.", userId);
 
