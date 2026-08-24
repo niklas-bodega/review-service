@@ -31,12 +31,8 @@ public class PostControllers {
     @PostMapping()
     public ResponseEntity<ShowReviewResponseDTO> addNewReviewToDatabase(
             @Valid @RequestBody CreateReviewRequestDTO reviewToAddToDatabase,
-            @AuthenticationPrincipal ReviewPrincipal principal,
-            HttpServletRequest request){
-
-
+            @AuthenticationPrincipal ReviewPrincipal principal){
         return ResponseEntity.ok(reviewService.createNewReviewEntry(reviewToAddToDatabase, principal));
-
     }
 
 }
