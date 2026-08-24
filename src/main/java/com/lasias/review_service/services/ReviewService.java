@@ -26,8 +26,16 @@ public class ReviewService {
 
     }
 
-    public void deleteReview(Long reviewId, ReviewPrincipal principal){
+    public String deleteReview(Long reviewId, ReviewPrincipal principal){
 
+        ReviewEntity reviewToDelete = reviewRepository.findById(reviewId).orElse(null);
+        if(reviewToDelete != null && reviewToDelete.getUserId().equals(principal.getUserId())){
+            reviewRepository.deleteById(reviewId);
+            return "Review deleted succesfully";
+        }
+        else{
+            return "Couldn't delete review";
+        }
     }
 
 }
