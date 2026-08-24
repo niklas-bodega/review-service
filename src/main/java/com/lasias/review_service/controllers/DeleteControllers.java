@@ -18,7 +18,7 @@ public class DeleteControllers {
     private final ReviewService reviewService;
 
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<String> deleteReview(@PathVariable Long reviewId, @AuthenticationPrincipal ReviewPrincipal principal){
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId, @AuthenticationPrincipal ReviewPrincipal principal){
             reviewService.deleteReview(reviewId, principal);
 
             return ResponseEntity.noContent().build();

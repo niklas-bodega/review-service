@@ -5,6 +5,8 @@ import com.lasias.review_service.Entity.ReviewEntity;
 import com.lasias.review_service.config.ReviewPrincipal;
 import com.lasias.review_service.dtos.CreateReviewRequestDTO;
 import com.lasias.review_service.dtos.ShowReviewResponseDTO;
+import com.lasias.review_service.exceptions.AccessToReviewDeniedException;
+import com.lasias.review_service.exceptions.ReviewNotFoundException;
 import com.lasias.review_service.repositories.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +28,13 @@ public class ReviewService {
 
     }
 
-    public String deleteReview(Long reviewId, ReviewPrincipal principal){
+    public void deleteReview(Long reviewId, ReviewPrincipal principal){
 
-        ReviewEntity reviewToDelete = reviewRepository.findById(reviewId).orElse(null);
-        if(reviewToDelete != null && reviewToDelete.getUserId().equals(principal.getUserId())){
-            reviewRepository.deleteById(reviewId);
-            return "Review deleted succesfully";
+        ReviewEntity reviewToDelete = reviewRepository.findById(reviewId).orElseThrow(() -> new ReviewNotFoundException(reviewId));
+        if(!reviewToDelete.getUserId().equals(principal.getUserId())){
+            throw new AccessToReviewDeniedException();
         }
-        else{
-            return "Couldn't delete review";
-        }
+        reviewRepository.deleteById(reviewId);
     }
 
 }
