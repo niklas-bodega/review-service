@@ -37,4 +37,10 @@ public class ReviewService {
         reviewRepository.deleteById(reviewId);
     }
 
+    public ShowReviewResponseDTO findReviewById (Long reviewId){
+        ReviewEntity foundReviewEntity = reviewRepository.findById(reviewId).orElseThrow(() -> new ReviewNotFoundException(reviewId));
+        return mapper.entityToShowReviewResponseDTO(foundReviewEntity);
+
+    }
+
 }
