@@ -1,5 +1,6 @@
 package com.lasias.review_service.services;
 
+import com.lasias.review_service.dtos.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -14,13 +15,17 @@ public class UserServiceClient {
 
     public String getUsername(String jwt){
         try {
-            System.out.println(userRestClient.get()
+            UserDto user = userRestClient.get()
                     .uri("/api/user")
                     .header("Authorization", "Bearer " + jwt)
                     .retrieve()
-                    .body(String.class));
-
-            return "getusername done";
+                    .body(UserDto.class);
+            if(user != null && user.name() != null){
+                return user.name();
+            }
+            else{
+                return "Unknown username";
+            }
         } catch (Exception e){
             log.error("Failed to fetch username from user-service: {}", e.getMessage());
             return "Unknown user";
