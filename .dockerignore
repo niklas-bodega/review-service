@@ -1,0 +1,14 @@
+target/
+.git/
+.gitignore
+README.md
+*.md
+.DS_Store
+.env
+node_modules/
+build/
+dist/
+.idea/
+.vscode/
+*.iml
+*.log
