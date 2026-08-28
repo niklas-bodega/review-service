@@ -1,4 +1,4 @@
-package Utils.Seeder;
+package com.lasias.review_service.Seeder;
 
 import com.lasias.review_service.Entity.ReviewEntity;
 import com.lasias.review_service.repositories.ReviewRepository;
