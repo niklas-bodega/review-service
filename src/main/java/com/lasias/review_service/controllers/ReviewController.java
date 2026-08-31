@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/review")
@@ -17,20 +20,26 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("{reviewId}")
-    public ResponseEntity<ShowReviewResponseDTO> findReviewById(@PathVariable Long reviewId){
+    public ResponseEntity<ShowReviewResponseDTO> findReviewById(@PathVariable Long reviewId) {
         ShowReviewResponseDTO foundReview = reviewService.findReviewById(reviewId);
         return ResponseEntity.ok(foundReview);
+    }
+
+    @GetMapping("/ratings")
+    public ResponseEntity<Map<Long,Double>> getAllReviewsRatingByRoomType() {
+            Map<Long, Double> reviewsRating = reviewService.getAllReviewsRatingByRoomType();
+            return ResponseEntity.ok(reviewsRating);
     }
 
     @PostMapping()
     public ResponseEntity<ShowReviewResponseDTO> addNewReviewToDatabase(
             @Valid @RequestBody CreateReviewRequestDTO reviewToAddToDatabase,
-            @AuthenticationPrincipal ReviewPrincipal principal){
+            @AuthenticationPrincipal ReviewPrincipal principal) {
         return ResponseEntity.ok(reviewService.createNewReviewEntry(reviewToAddToDatabase, principal));
     }
 
     @DeleteMapping("/{reviewId}")
-    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId, @AuthenticationPrincipal ReviewPrincipal principal){
+    public ResponseEntity<Void> deleteReview(@PathVariable Long reviewId, @AuthenticationPrincipal ReviewPrincipal principal) {
         reviewService.deleteReview(reviewId, principal);
 
         return ResponseEntity.noContent().build();
