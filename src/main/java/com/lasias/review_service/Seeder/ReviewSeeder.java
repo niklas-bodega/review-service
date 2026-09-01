@@ -20,9 +20,9 @@ public class ReviewSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         if (reviewRepository.count() == 0) {
             reviewRepository.saveAll(reviewsToAdd);
-            log.info("Added {} to Rooms table", reviewsToAdd.size());
+            log.info("Added {} to Reviews table", reviewsToAdd.size());
         } else {
-            log.info("Rooms already exists in database");
+            log.info("Reviews already exists in database");
         }
     }
 
