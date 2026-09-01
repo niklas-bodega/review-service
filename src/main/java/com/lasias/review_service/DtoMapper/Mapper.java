@@ -15,7 +15,7 @@ public class Mapper {
                 .rating(dto.getRating())
                 .comment(dto.getComment())
                 .roomTypeId(dto.getRoomTypeId())
-                .bookingId(dto.getBookingId())
+                .bookingNumber(dto.getBookingNumber())
                 .userId(userId)
                 .username(username)
                 .build();
