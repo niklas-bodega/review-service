@@ -34,6 +34,7 @@ public class ReviewSeeder implements CommandLineRunner {
                     .roomTypeId(1L)
                     .userId(3L)
                     .username("Jane Smith")
+                    .roomTypeName("Lux Suite")
                     .build(),
 
             ReviewEntity.builder()
@@ -43,6 +44,7 @@ public class ReviewSeeder implements CommandLineRunner {
                     .roomTypeId(2L)
                     .userId(3L)
                     .username("Jane Smith")
+                    .roomTypeName("Classic Single")
                     .build(),
 
             ReviewEntity.builder()
@@ -52,6 +54,7 @@ public class ReviewSeeder implements CommandLineRunner {
                     .roomTypeId(3L)
                     .userId(2L)
                     .username("John Doe")
+                    .roomTypeName("Classic Double")
                     .build()
     );
 
