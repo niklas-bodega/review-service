@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -38,6 +39,15 @@ public class ReviewService {
                         ReviewEntity::getRoomTypeId,
                         Collectors.averagingDouble(ReviewEntity::getRating)
                 ));
+    }
+
+    public List<ShowReviewResponseDTO> getReviewsForShowcase () {
+        List<ReviewEntity> allReviews = reviewRepository.findAll();
+        Collections.shuffle(allReviews);
+        return allReviews.stream()
+                .limit(10)
+                .map(mapper::entityToShowReviewResponseDTO)
+                .toList();
     }
 
     public void deleteReview(Long reviewId, ReviewPrincipal principal){
