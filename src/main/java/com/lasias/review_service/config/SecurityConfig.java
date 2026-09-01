@@ -37,7 +37,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
                             "/api/review/ratings",
-                            "/api/review/room/**"
+                            "/api/review/room/**",
+                            "/api/review/showcase"
                     ).permitAll();
 
                     auth.requestMatchers(

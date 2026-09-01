@@ -5,6 +5,7 @@ import com.lasias.review_service.Entity.ReviewEntity;
 import com.lasias.review_service.config.ReviewPrincipal;
 import com.lasias.review_service.dtos.CreateReviewRequestDTO;
 import com.lasias.review_service.dtos.ShowReviewResponseDTO;
+import com.lasias.review_service.dtos.ShowcaseReviewResponseDto;
 import com.lasias.review_service.exceptions.AccessToReviewDeniedException;
 import com.lasias.review_service.exceptions.ReviewNotFoundException;
 import com.lasias.review_service.repositories.ReviewRepository;
@@ -41,12 +42,12 @@ public class ReviewService {
                 ));
     }
 
-    public List<ShowReviewResponseDTO> getReviewsForShowcase () {
+    public List<ShowcaseReviewResponseDto> getReviewsForShowcase () {
         List<ReviewEntity> allReviews = reviewRepository.findAll();
         Collections.shuffle(allReviews);
         return allReviews.stream()
                 .limit(10)
-                .map(mapper::entityToShowReviewResponseDTO)
+                .map(mapper::entityToShowcaseReviewResponseDTO)
                 .toList();
     }
 

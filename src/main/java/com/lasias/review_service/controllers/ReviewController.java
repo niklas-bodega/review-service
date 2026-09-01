@@ -3,6 +3,7 @@ package com.lasias.review_service.controllers;
 import com.lasias.review_service.config.ReviewPrincipal;
 import com.lasias.review_service.dtos.CreateReviewRequestDTO;
 import com.lasias.review_service.dtos.ShowReviewResponseDTO;
+import com.lasias.review_service.dtos.ShowcaseReviewResponseDto;
 import com.lasias.review_service.services.ReviewService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,8 @@ public class ReviewController {
             return ResponseEntity.ok(reviewsRating);
     }
 
-    @GetMapping("/reviewShowcase")
-    public ResponseEntity<List<ShowReviewResponseDTO>> getReviewsForShowcase(){
+    @GetMapping("/showcase")
+    public ResponseEntity<List<ShowcaseReviewResponseDto>> getReviewsForShowcase(){
         return ResponseEntity.ok(reviewService.getReviewsForShowcase());
     }
 

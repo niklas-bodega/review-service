@@ -34,6 +34,9 @@ public class ReviewEntity {
     private Long roomTypeId;
 
     @Column(nullable = false)
+    private String roomTypeName;
+
+    @Column(nullable = false)
     private Long userId;
 
     @Column(nullable = false)
