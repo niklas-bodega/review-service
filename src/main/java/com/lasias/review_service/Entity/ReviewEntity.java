@@ -28,10 +28,13 @@ public class ReviewEntity {
     private int rating;
 
     @Column(nullable = false)
-    private Long bookingId;
+    private String bookingNumber;
 
     @Column(nullable = false)
     private Long roomTypeId;
+
+    @Column(nullable = false)
+    private String roomTypeName;
 
     @Column(nullable = false)
     private Long userId;

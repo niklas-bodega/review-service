@@ -16,15 +16,19 @@ public class CreateReviewRequestDTO {
     private final int rating;
 
     @NotNull
-    private final Long bookingId;
+    private final String bookingNumber;
     @NotNull
     private final Long roomTypeId;
 
+    @NotNull
+    private final String roomTypeName;
 
-    public CreateReviewRequestDTO(String comment, int rating, Long bookingId, Long roomTypeId) {
+
+    public CreateReviewRequestDTO(String comment, int rating, String bookingNumber, Long roomTypeId, String roomTypeName) {
         this.comment = comment;
         this.rating = rating;
-        this.bookingId = bookingId;
+        this.bookingNumber = bookingNumber;
         this.roomTypeId = roomTypeId;
+        this.roomTypeName = roomTypeName;
     }
 }
