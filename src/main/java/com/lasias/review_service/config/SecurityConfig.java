@@ -36,7 +36,9 @@ public class SecurityConfig {
                         }))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(
-                            "/api/review/room/**"
+                            "/api/review/ratings",
+                            "/api/review/room/**",
+                            "/api/review/showcase"
                     ).permitAll();
 
                     auth.requestMatchers(
@@ -55,7 +57,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:8085", "https://niklasbodega.lasias.com","http://localhost:8082","http://localhost:8083","http://localhost:8084","http://localhost:8086","http://localhost")); configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
+        configuration.setAllowedOrigins(List.of("http://localhost:8085", "https://niklasbodega.lasias.com","http://localhost:30000","http://localhost:8082","http://localhost:8083","http://localhost:8084","http://localhost:8086","http://localhost:30000")); configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("Content-Type", "Authorization"));
         configuration.setAllowCredentials(true);
 
