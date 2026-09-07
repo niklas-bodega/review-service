@@ -30,6 +30,7 @@ public class Mapper {
                 .username(entity.getUsername())
                 .createdAt(entity.getCreateDate())
                 .reviewId(entity.getId())
+                .roomTypeName(entity.getRoomTypeName())
                 .build();
     }
 
