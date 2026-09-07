@@ -14,8 +14,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.mysql.MySQLContainer;
 
+import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -77,5 +79,37 @@ public class ReviewControllerIntegrationTests {
                 .andExpect(jsonPath("$[?(@.username == 'Pelle')]").exists())
                 .andExpect(jsonPath("$[?(@.roomTypeName == 'Suite')]").exists());
     }
+
+    @Test
+    void shouldGetReviewsRating() throws Exception{
+        reviewRepository.deleteAll();
+
+        reviewRepository.save(ReviewEntity.builder()
+                .roomTypeId(1L)
+                .rating(5)
+                .comment("Fantastic stay")
+                .bookingNumber("booking-1")
+                .userId(1L)
+                .username("Ivan")
+                .roomTypeName("Suite")
+                .build());
+
+        reviewRepository.save(ReviewEntity.builder()
+                .roomTypeId(1L)
+                .rating(3)
+                .comment("Ok stay")
+                .bookingNumber("booking-2")
+                .userId(2L)
+                .username("Pelle")
+                .roomTypeName("Single")
+                .build());
+
+            mockMvc.perform(get("/api/review/ratings"))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$['1']").value(4.0));
+
+    }
+
+
 
 }
