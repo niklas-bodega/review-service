@@ -95,4 +95,28 @@ class ReviewServiceTest {
         assertEquals(savedReview.getRoomTypeName(), reviewToFind.getRoomTypeName());
     }
 
+    @Test
+    void testThatAddsReview_checksThatReviewIsAdded_deletesReview(){
+        ReviewEntity savedReview = reviewRepository.save(ReviewEntity.builder()
+                .roomTypeId(1L)
+                .rating(5)
+                .comment("Wonderful stay")
+                .bookingNumber("booking-abc")
+                .userId(1L)
+                .username("Ivan")
+                .roomTypeName("Penthouse")
+                .build());
+
+        ReviewPrincipal principal = ReviewPrincipal.builder()
+                .userId(1L)
+                .jwt("fake-jwt")
+                .build();
+
+        assertEquals(1, reviewRepository.count());
+
+        reviewService.deleteReview(savedReview.getId(), principal);
+        assertEquals(0, reviewRepository.count());
+
+    }
+
 }
